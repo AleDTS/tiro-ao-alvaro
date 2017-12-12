@@ -16,8 +16,8 @@ MonoBehaviour:
     ufoLicenseKey: QWVtT3k1di8vLy8vQUFBQUtCVURUNGpNcGs5TXNvTERWbnNQMTdJTXB0V1EvWUtDRTlianZQVnkzcFVVK0NvamgrMFFaQXFLQmx3Rm1pVmhRUkMyak9PVnkxeitIQWFyVkl3OTU5MjRrVFpMa2FMWWtMZVEwcFlRU3VmZW96SWphUElucXJJS3ZpYVVvNXhkQTJWenJ6ckRiVkJONFNUelZoUHZJOVh3QlFsVDdzZGMzcEVKeGZGSjRCaEhjMEFsaUhha2h4dmZSWjRDZEx0QWx2MHZYSlpQV0JXTDBnZHJPdmZMbmwyWW41ekhGQmdNeW9vTEc4ams4TGQ5NG9nMXEvb0UyN2RaSnBNbHU2V294YlVmN3lseGpmdlB6SGNZQiswTHdOa2c4ZUJRblJuQ2ZoaVJRWndJY1dUS0tHaWRKVFFLM1ZUZW50NlM0Q0d3dy9yQ21qb2ZPS2lUbzZxNUFCRlZFYWxDc0VwVlNuM1I2NmFkSkVDK29xYis=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 1
-    maxSimultaneousObjectTargets: 1
+    maxSimultaneousImageTargets: 2
+    maxSimultaneousObjectTargets: 2
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
     mirrorVideoBackground: 0
@@ -44,10 +44,12 @@ MonoBehaviour:
       ContainsMagnet: 0
   databaseLoad:
     dataSetsToLoad:
+    - tiro_ao_alvaro
     - VuforiaMars_Images
     - VuforiaMars_Object_OT
     - VuforiaMars_VuMark
     dataSetsToActivate:
+    - tiro_ao_alvaro
     - VuforiaMars_Images
     - VuforiaMars_Object_OT
     - VuforiaMars_VuMark
