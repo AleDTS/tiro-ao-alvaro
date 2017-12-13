@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Essa classe comanda aparicao do inimigo
 public class EnemySpawner : MonoBehaviour {
 
 	public GameObject enemyPrefab;
@@ -26,11 +28,7 @@ public class EnemySpawner : MonoBehaviour {
 		z = wall.position.z - WallDistance;
 	}
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-
+	// Funcao de aparicao do inimigo
 	public void SpawnEnemy(){
 		Quaternion spawnRotation = new Quaternion (0, 180, 0, 0);
 		Vector3 spawnPosition = 
@@ -43,6 +41,8 @@ public class EnemySpawner : MonoBehaviour {
 		return (Random.value >= 0.5);
 	}
 
+
+	// Retorna uma posicao aleatoria dentro das bordas do retangulo da parede
 	public Vector3 RandomEdge(
 		Vector3 pos){
 		Vector3 position = Vector3.zero;

@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vuforia;
 
+
+// Essa classe comanda as acoes do inimigo
 public class EnemyController : MonoBehaviour {
 
 	public float speed = 5f;
 	public float lifeTime;
 	public GameObject GameController;
 
+	private TrackableBehaviour mTrackableBehaviour;
 	private GameController gameCtrl;
 	private Rigidbody rgd;
 	private EnemySpawner spw;
@@ -17,8 +21,12 @@ public class EnemyController : MonoBehaviour {
 	private float timeToDie = 0f;
 	private Animation_Test anim;
 
+
+
 	// Use this for initialization
 	void Start () {
+
+
 		speed = Random.Range (4f, 8f);
 		GameController = GameObject.Find ("GameController");
 		gameCtrl = GameController.GetComponent<GameController> ();
@@ -30,35 +38,36 @@ public class EnemyController : MonoBehaviour {
 		rgd.useGravity = false;
 	}
 
-	void Update(){
-		
-	}
-
+	// Quando o inimigo for derrotado
 	void Dead () 
 	{
 		Destroy (this.gameObject,2f);
 		gameCtrl.OnDestroyEnemy ();
 	}
 
+	// Quando o inimigo fugir
 	void Flee () 
 	{
 		Destroy (this.gameObject);
 		gameCtrl.OnFleeEnemy ();
 	}
-		
+
+
 	void LateUpdate () {
 		if (!shouldMove)
 			return;
 		Mov ();
+		// Se passar o tempo de fuga, o inimigo foge
 		if (Time.time - initTime >= lifeTime) {
 			Flee ();
 		}
-		if (Input.GetKeyDown ("space")) {
-			Hit ();
-		}
+//		if (Input.GetKeyDown ("space")) {
+//			Hit ();
+//		}
 			
 	}
 
+	// Quando o inimigo for acertado
 	void Hit(){
 		timeToDie = 2f;
 		anim.DeathAni ();
@@ -72,6 +81,7 @@ public class EnemyController : MonoBehaviour {
 		this.lifeTime = lifeTime;
 	}
 
+	// Colisoes do inimigo
 	private void OnCollisionEnter(Collision coll){
 		if (coll.gameObject.tag == "Bullet") {
 			Hit ();
@@ -86,11 +96,13 @@ public class EnemyController : MonoBehaviour {
 				coll.gameObject.GetComponent<Collider> ());
 		}
 	}
-
+		
 	private Vector3 GetDest(){
 		return spw.RandomEdge (transform.position);
 	}
 
+
+	// Movimento aleatorio do inimigo
 	private void Mov(){
 		if (destination == transform.position || destination == Vector3.zero)
 			destination = GetDest ();

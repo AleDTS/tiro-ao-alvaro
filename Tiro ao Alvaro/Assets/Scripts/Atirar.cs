@@ -15,6 +15,7 @@ public class Atirar : MonoBehaviour {
     // Use this for initialization
     void Start () {
         parede = GameObject.FindGameObjectWithTag("Parede");
+
     }
 
     public void safety(bool x)

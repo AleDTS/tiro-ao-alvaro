@@ -22,6 +22,8 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     #region UNTIY_MONOBEHAVIOUR_METHODS
 
+	public GameObject gameController;
+
     protected virtual void Start()
     {
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
