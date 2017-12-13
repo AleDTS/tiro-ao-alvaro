@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33349250720401766}
   - component: {fileID: 135271550091220508}
   - component: {fileID: 23931287555177834}
+  - component: {fileID: 114990723776352580}
   - component: {fileID: 54412931305971996}
   m_Layer: 0
   m_Name: Tiro
@@ -99,13 +100,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114990723776352580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056655598942772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fba0d7a23e8b584a895debd41a21616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135271550091220508
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1056655598942772}
-  m_Material: {fileID: 13400000, guid: bfbaac99c8fc2e340b3bc91a682c3574, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

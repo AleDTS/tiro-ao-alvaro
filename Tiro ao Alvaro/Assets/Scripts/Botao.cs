@@ -9,6 +9,7 @@ public class Botao : MonoBehaviour, IVirtualButtonEventHandler {
 
 	// Use this for initialization
 	void Start () {
+        //registra os botões virtuais associados ao marcador
         arma = GameObject.FindGameObjectWithTag("Arma");
         VirtualButtonBehaviour[] vbs = GetComponentsInChildren<VirtualButtonBehaviour>();
         for (int i = 0; i < vbs.Length; i++)
@@ -19,6 +20,7 @@ public class Botao : MonoBehaviour, IVirtualButtonEventHandler {
     }
     public void OnButtonPressed(VirtualButtonBehaviour vbs)
     {
+        //ao perceber o botão sendo pressionado, chama a rotina safety do script Atirar
         var shot = arma.GetComponent<Atirar>();
         shot.safety(false);
         Debug.Log("foi");

@@ -670,7 +670,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 495396842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -355.5, y: 245, z: 0}
+  m_LocalPosition: {x: -413.5, y: 308.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1241925838}
@@ -1241,7 +1241,7 @@ RectTransform:
   m_GameObject: {fileID: 1241925834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.7, z: -14}
-  m_LocalScale: {x: 0.0022641188, y: 0.0022641188, z: 0.0022641188}
+  m_LocalScale: {x: 0.0018127167, y: 0.0018127167, z: 0.0018127167}
   m_Children:
   - {fileID: 495396843}
   - {fileID: 1437439509}
@@ -1327,6 +1327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiro: {fileID: 54412931305971996, guid: d63bacaa2eebfb141b1ac31ac7b80294, type: 2}
   trava: 1
+  limite: 0
 --- !u!1 &1437439508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,7 +1352,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1437439508}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -355.5, y: 205, z: 0}
+  m_LocalPosition: {x: -413.5, y: 268.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1241925838}
@@ -1416,11 +1417,11 @@ GameObject:
   - component: {fileID: 1559225944}
   m_Layer: 0
   m_Name: ImageTarget
-  m_TagString: Untagged
+  m_TagString: Parede
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!33 &1559225944
 MeshFilter:
   m_ObjectHideFlags: 0
