@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		speed = Random.Range (4f, 8f);
 		GameController = GameObject.Find ("GameController");
 		gameCtrl = GameController.GetComponent<GameController> ();
 		anim = GetComponent<Animation_Test>();

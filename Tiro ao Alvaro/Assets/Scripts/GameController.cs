@@ -11,9 +11,11 @@ public class GameController : MonoBehaviour {
 
 	public Text textScore;
 	public Text textLeft;
+	public Text gameOver;
 
 	// Use this for initialization
 	void Start () {
+		gameOver.text = "";
 		UpdateScore ();
 		spw = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
 		Spawn ();
@@ -21,17 +23,20 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetKeyDown ("up"))
+			EndGame ();
+	}
+
+	void Reload(){
+		UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 	}
 
 	void GameOver(){
-		Debug.Log ("Game Over!");
-		//UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+		gameOver.text = "Game Over!";
 	}
 
 	void Win(){
-		Debug.Log ("You win!");
-		//UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+		gameOver.text = "Você venceu!";
 	}
 
 	void EndGame(){
@@ -40,6 +45,7 @@ public class GameController : MonoBehaviour {
 		} else {
 			GameOver ();
 		}
+		Invoke ("Reload", 10f);
 	}
 
 	public void OnFleeEnemy(){
@@ -63,7 +69,7 @@ public class GameController : MonoBehaviour {
 		if (rounds == 0)
 			EndGame ();
 		else
-			Invoke ("Spawn", 2f);
+			Invoke ("Spawn", Random.Range(2f,3f));
 		
 	}
 
