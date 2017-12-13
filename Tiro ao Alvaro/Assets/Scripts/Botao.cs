@@ -21,12 +21,12 @@ public class Botao : MonoBehaviour, IVirtualButtonEventHandler {
     {
         var shot = arma.GetComponent<Atirar>();
         shot.safety(false);
+        Debug.Log("foi");
     }
 
     public void OnButtonReleased(VirtualButtonBehaviour vbs)
     {
-        var shot = arma.GetComponent<Atirar>();
-        shot.safety(true);
+        
     }
 
 
