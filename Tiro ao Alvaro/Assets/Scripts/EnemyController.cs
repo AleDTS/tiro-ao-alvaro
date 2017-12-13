@@ -83,6 +83,11 @@ public class EnemyController : MonoBehaviour {
 
 	// Colisoes do inimigo
 	private void OnCollisionEnter(Collision coll){
+		if (coll.gameObject.name == "FlareGun") {
+			Physics.IgnoreCollision (
+				gameObject.GetComponent<Collider> (),
+				coll.gameObject.GetComponent<Collider> ());
+		}
 		if (coll.gameObject.tag == "Bullet") {
 			Hit ();
 		}
