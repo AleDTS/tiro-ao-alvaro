@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
-	
-	public float speed = 0.1f;
-	public float lifeTime;
 
+	public float speed = 5f;
+	public float lifeTime;
+	public GameObject GameController;
+
+	private GameController gameCtrl;
 	private Rigidbody rgd;
 	private EnemySpawner spw;
 	private Vector3 destination = Vector3.zero;	
 	private bool shouldMove = true;
 	private float initTime;
 	private float timeToDie = 0f;
+	private Animation_Test anim;
 
 	// Use this for initialization
 	void Start () {
+		GameController = GameObject.Find ("GameController");
+		gameCtrl = GameController.GetComponent<GameController> ();
+		anim = GetComponent<Animation_Test>();
 		initTime = Time.time;
 		lifeTime = Random.Range (5f, 8f);
 		spw = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
@@ -23,25 +29,41 @@ public class EnemyController : MonoBehaviour {
 		rgd.useGravity = false;
 	}
 
-	void OnEnable () 
-	{
-		EventManager.StartListening ("DestroyEnemy", DestroyEnemy);
+	void Update(){
+		
 	}
 
-	void OnDisable () 
+	void Dead () 
 	{
-		EventManager.StopListening ("DestroyEnemy", DestroyEnemy);
+		Destroy (this.gameObject,2f);
+		gameCtrl.OnDestroyEnemy ();
 	}
 
-	void DestroyEnemy () 
+	void Flee () 
 	{
-		EventManager.StopListening ("DestroyEnemy", DestroyEnemy);
-		StartCoroutine (DestroyNow());
+		Destroy (this.gameObject);
+		gameCtrl.OnFleeEnemy ();
 	}
-
-	// Update is called once per frame
+		
 	void LateUpdate () {
-		EdgeMov ();
+		if (!shouldMove)
+			return;
+		Mov ();
+		if (Time.time - initTime >= lifeTime) {
+			Flee ();
+		}
+		if (Input.GetKeyDown ("space")) {
+			Hit ();
+		}
+			
+	}
+
+	void Hit(){
+		timeToDie = 2f;
+		anim.DeathAni ();
+		Debug.Log ("Hit");
+		shouldMove = false;
+		rgd.useGravity = true;
 	}
 
 	public void SetParam(float speed, float lifeTime){
@@ -49,23 +71,13 @@ public class EnemyController : MonoBehaviour {
 		this.lifeTime = lifeTime;
 	}
 
-	public void EdgeMov(){
-		if (shouldMove)
-			Mov ();
-		if (Time.time - initTime >= lifeTime) {
-			Bye (0f);
-		}
-	}
-
 	private void OnCollisionEnter(Collision coll){
 		if (coll.gameObject.tag == "Bullet") {
-			shouldMove = false;
-			rgd.useGravity = true;
-			Debug.Log ("Good shot!");
+			Hit ();
 		}
 		if (coll.gameObject.name == "Ground") {
-			Debug.Log ("fall");
-			Bye (2f);
+			//Debug.Log ("fall");
+			Dead ();
 		}
 		if (coll.gameObject.tag == "Enemy") {
 			Physics.IgnoreCollision (
@@ -87,15 +99,4 @@ public class EnemyController : MonoBehaviour {
 				transform.position, destination,
 				speed * Time.deltaTime);
 	}
-
-	private void Bye(float time){
-		timeToDie = time;
-		EventManager.TriggerEvent ("DestroyEnemy");
-	}
-
-	private IEnumerator DestroyNow(){
-		yield return null;
-		Destroy (this.gameObject, this.timeToDie);
-	}
-		
 }

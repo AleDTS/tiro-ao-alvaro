@@ -13,10 +13,8 @@ public class EnemySpawner : MonoBehaviour {
 
 	private float minX, maxX, minY, maxY, z;
 	private List<string> edges = new List<string> ();
-	private UnityAction spawnListener;
 
 	void Awake(){
-		spawnListener = new UnityAction (SpawnEnemy);
 		edges.Add ("up");
 		edges.Add ("down");
 		edges.Add ("left");
@@ -34,20 +32,11 @@ public class EnemySpawner : MonoBehaviour {
 		
 	}
 
-	void OnEnable () {
-		EventManager.StartListening ("SpawnEnemy", spawnListener);
-	}
-
-	void OnDisable () {
-		EventManager.StopListening ("SpawnEnemy", spawnListener);
-	}
-
-	void SpawnEnemy(){
-		Quaternion spawnRotation = 
-			Camera.main.transform.rotation;
+	public void SpawnEnemy(){
+		Quaternion spawnRotation = new Quaternion (0, 180, 0, 0);
 		Vector3 spawnPosition = 
 			RandomEdge (Vector3.zero);
-		
+		//Debug.Log ("olar");
 		Instantiate(enemyPrefab, spawnPosition, spawnRotation);
 	}
 
